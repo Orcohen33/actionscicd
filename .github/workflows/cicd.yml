@@ -65,14 +65,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download build artifact
-        uses: action/download-artifact@v4
+        uses: action/download-artifact@v2
         continue-on-error: false
         with:
           name: buildartifacts
           path: buildartifacts
 
       - name: Download the ARM artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v2
         continue-on-error: false
         with:
           name: deploymenttemplates
@@ -84,25 +84,24 @@ jobs:
 
       - name: Unzip ARM Templs
         run: |
-          unzip -qq ./deploymenttemplates/armtemplates.zip -d .          
+          unzip -qq ./deploymenttemplates/armtemplates.zip -d .
 
       - name: Login to Azure
         uses: azure/login@v1
         continue-on-error: false
         with:
-            creds: ${{ secrets.AZURE_CREDENTIALS }}
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Deploy ARM Template
         uses: azure/CLI@v1
         continue-on-error: false
         with:
-            inlineScript: |
-              az group create --name "${{ env.RESOURCEGROUPNAME }}" --location "${{ env.LOCATION }}"
-              az deployment group create --resource-group "${{ env.RESOURCEGROUPNAME }}" --template-file ./armTemplate/appsvc.json --parameters webAppName="${{ env.AZURE_WEBAPP_NAME }}" hostingPlanName="${{ env.HOSTINGPLANNAME }}" appInsightsLocation="${{ env.APPINSIGHTSLOCATION }}" sku="${{ env.SKU }}"
-
+          inlineScript: |
+            az group create --name "${{ env.RESOURCEGROUPNAME }}" --location "${{ env.LOCATION }}"
+            az deployment group create --resource-group "${{ env.RESOURCEGROUPNAME }}" --template-file ./armTemplate/appsvc.json --parameters webAppName="${{ env.AZURE_WEBAPP_NAME }}" hostingPlanName="${{ env.HOSTINGPLANNAME }}" appInsightsLocation="${{ env.APPINSIGHTSLOCATION }}" sku="${{ env.SKU }}"
 
       - name: Deploy the Web App
         uses: azure/webapps-deploy@v2
         with:
-            app-name: ${{ env.AZURE_WEBAPP_NAME }}
-            package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
