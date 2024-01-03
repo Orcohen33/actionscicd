@@ -46,7 +46,7 @@
         "[concat('hidden-related:', '/subscription/', subscription().subscriptionId, '/resourcegroups/', resourceGroup().name , '/providers/Microsoft.Web/serverfarms/appServicePlan1')]": "Resource"
       },
       "dependsOn": [
-        "[concat('Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]"
+        "[resourceId('Microsoft.Web/serverfarms', parameters('hostingPlanName'))]"
       ]
     }
   ],
