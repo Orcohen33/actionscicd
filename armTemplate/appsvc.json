@@ -27,16 +27,6 @@
       "tags": {
         "[concat('hidden-related:', '/subscription/', subscription().subscriptionId, '/resourcegroups/', resourceGroup().name , '/providers/Microsoft.Web/serverfarms/appServicePlan1')]": "Resource"
       },
-      "resources": [
-        {
-          "type": "siteextensions",
-          "name": "Microsoft.ApplicationInsights.AzureWebSites",
-          "apiVersion": "2022-03-01",
-          "dependsOn": [
-            "[resourceId('Microsoft.Web/sites/', parameters('webAppName'))]"
-          ]
-        }
-      ],
       "properties": {
         "siteConfig": {
           "appSettings": [
@@ -48,7 +38,7 @@
           "phpVersion": "7.1"
         },
         "name": "[parameters('webAppName')]",
-        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('hostingPlanName'))]"
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]"
       },
       "dependsOn": [
         "[concat('Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]",
