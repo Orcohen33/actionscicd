@@ -25,8 +25,7 @@
       "apiVersion": "2022-03-01",
       "location": "[resourceGroup().location]",
       "tags": {
-        "[concat('hidden-related:', '/subscription/', subscription().subscriptionId, '/resourcegroups/', resourceGroup().name , '/providers/Microsoft.Web/serverfarms/appServicePlan1')]": "Resource",
-        "displayName": "webApp1"
+        "[concat('hidden-related:', '/subscription/', subscription().subscriptionId, '/resourcegroups/', resourceGroup().name , '/providers/Microsoft.Web/serverfarms/appServicePlan1')]": "Resource"
       },
       "resources": [
         {
@@ -43,7 +42,7 @@
           "appSettings": [
             {
               "name": "APPINISGHTS_INSTRUMENTATIONKEY",
-              "value": "[reference(resourceId('microsoft.insights/components/', parameters('webAppName')))]"
+              "value": "[reference(resourceId('Microsoft.insights/components/', parameters('webAppName')))]"
             }
           ],
           "phpVersion": "7.1"
@@ -53,7 +52,7 @@
       },
       "dependsOn": [
         "[concat('Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]",
-        "[resourceId('microsoft.insights/components/', parameters('webAppName'))]"
+        "[resourceId('Microsoft.insights/components/', parameters('webAppName'))]"
       ]
     },
     {
