@@ -9,7 +9,7 @@ env:
   AZURE_WEBAPP_PACKAGE_PATH: "build"
   NODE_VERSION: "16.16.0"
   RESOURCEGROUPNAME: "actionscicd"
-  LOCATION: "West Europe"
+  LOCATION: "westeurope"
   HOSTINGPLANNAME: "actionscicd-plan"
   APPINSIGHTSLOCATION: "westeurope"
   SKU: "S1 Standard"

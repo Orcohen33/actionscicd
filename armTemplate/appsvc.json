@@ -22,7 +22,7 @@
     {
       "name": "[parameters('webAppName')]",
       "type": "Microsoft.Web/sites",
-      "apiVersion": "2020-12-01",
+      "apiVersion": "2022-03-01",
       "location": "[resourceGroup().location]",
       "tags": {
         "[concat('hidden-related:', '/subscription/', subscription().subscriptionId, '/resourcegroups/', resourceGroup().name , '/providers/Microsoft.Web/serverfarms/appServicePlan1')]": "Resource",
@@ -32,11 +32,10 @@
         {
           "type": "siteextensions",
           "name": "Microsoft.ApplicationInsights.AzureWebSites",
-          "apiVersion": "2022-09-01",
+          "apiVersion": "2022-03-01",
           "dependsOn": [
             "[resourceId('Microsoft.Web/sites', parameters('webAppName'))]"
-          ],
-          "properties": {}
+          ]
         }
       ],
       "properties": {
@@ -60,7 +59,7 @@
     {
       "name": "[parameters('hostingPlanName')]",
       "type": "Microsoft.Web/serverfarms",
-      "apiVersion": "2022-09-01",
+      "apiVersion": "2022-03-01",
       "location": "[resourceGroup().location]",
       "sku": {
         "name": "[first(split(parameters('sku'), ' '))]",
