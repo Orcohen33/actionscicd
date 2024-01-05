@@ -18,14 +18,6 @@
   "variables": {},
   "resources": [
     {
-      "name": "resourceGroup",
-      "type": "Microsoft.Resources/resourceGroups",
-      "apiVersion": "2022-09-01",
-      "location": "eastus",
-      "dependsOn": [],
-      "tags": {}
-    },
-    {
       "type": "Microsoft.Web/serverfarms",
       "apiVersion": "2022-03-01",
       "name": "[parameters('hostingPlanName')]",
