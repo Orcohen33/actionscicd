@@ -10,7 +10,6 @@
     },
     "sku": {
       "type": "string",
-      "allowedValues": ["A1", "S1"],
       "defaultValue": "S1 Standard"
     }
   },
